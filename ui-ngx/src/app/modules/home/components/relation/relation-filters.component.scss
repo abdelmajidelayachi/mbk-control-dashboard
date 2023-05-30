@@ -1,0 +1,57 @@
+/**
+ * Copyright © 2016-2023 The Mbk Controls Authors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+:host {
+  .tb-relation-filters {
+    max-width: calc(100vw - 48px);
+    overflow: hidden;
+
+    .container{
+      width: 100%;
+    }
+
+    .header {
+      padding: 0 5px 5px;
+
+      .cell {
+        padding-right: 5px;
+        padding-left: 5px;
+        font-size: 12px;
+        font-weight: 700;
+        color: rgba(0, 0, 0, .54);
+        white-space: nowrap;
+      }
+    }
+
+    .body {
+      padding: 0 5px 20px;
+      max-height: 300px;
+      overflow: auto;
+
+      .row {
+        padding-top: 5px;
+      }
+
+      .cell {
+        padding-right: 5px;
+        padding-left: 5px;
+      }
+    }
+
+    .any-filter{
+      margin: 10px 0 20px;
+    }
+  }
+}
