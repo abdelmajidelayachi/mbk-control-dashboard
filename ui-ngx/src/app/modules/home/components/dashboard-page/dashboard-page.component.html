@@ -100,33 +100,20 @@
                   (click)="exportDashboard($event)">
             <mat-icon>file_download</mat-icon>
           </button>
-          <button [fxShow]="currentDashboardId && !isMobileApp && (isEdit || displayExport())" mat-icon-button
-                  matTooltip="{{'dashboard.export' | translate}}"
-                  matTooltipPosition="below"
-                  (click)="exportDashboard($event)">
-            <mat-icon>print</mat-icon>
+          <!--TODO: add dropdown has button to save pdf or png or json --> 
+        
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Print the dashboard in Pdf or Image">
+          <mat-icon>print</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" >
+          <button mat-menu-item *ngFor="let printDashbaordSetting of printDashbaordSettings"
+          matTooltipPosition="above"
+          (click)="printDashbaordSetting.onAction($event)">
+            <mat-icon>{{printDashbaordSetting.icon}}</mat-icon>
+            <span>{{printDashbaordSetting.name}}</span>
           </button>
-          <!--TODO: add dropdown pdf or png or json --> 
-          
-          
-          <ng-template>
-                <button mat-icon-button [disabled]="isLoading$ | async"
-                        matTooltip="export as pdf or png"
-                        matTooltipPosition="above"
-                        [matMenuTriggerFor]="addActionsMenu">
-                  <mat-icon>print</mat-icon>
-                </button>
-                <mat-menu #addActionsMenu xPosition="before">
-                  <button mat-menu-item
-                          *ngFor="let printDashbaordSetting of printDashbaordSettings"
-                          [disabled]="isLoading$ | async"
-                          [fxShow]="printDashbaordSetting.isEnable"
-                          (click)="printDashbaordSetting.onAction($event)">
-                    <mat-icon>{{printDashbaordSetting.icon}}</mat-icon>
-                    <span>{{ printDashbaordSetting.name }}</span>
-                  </button>
-                </mat-menu>
-              </ng-template>
+        </mat-menu>
+
           <tb-timewindow [fxShow]="isEdit || displayDashboardTimewindow()"
                          isToolbar="true"
                          [isEdit]="isEdit"

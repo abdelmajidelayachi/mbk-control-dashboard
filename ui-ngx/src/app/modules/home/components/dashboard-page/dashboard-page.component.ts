@@ -828,19 +828,28 @@ export class DashboardPageComponent extends PageComponent implements IDashboardC
   }
 
   public exportDashboardToPdf($event: Event) {
-    console.log("exportToPdf");
-    if ($event) {
-      $event.stopPropagation();
-    }
-    console.log("exportToPdf");
+    const dashboard = document.getElementById('gridster-background');
+    const options = {
+      background: 'white',
+      scale: 3
+    };
+    // html2canvas(dashboard, options).then((canvas) => {
+    //   const imgData = canvas.toDataURL('image/png');
+    //   const doc = new jsPDF('p', 'mm',
+    //     [dashboard.getBoundingClientRect().width * 0.264583333, dashboard.getBoundingClientRect().height * 0.264583333]);
+    //   doc.addImage(imgData, 'PNG', 0, 0);
+    //   doc.save('dashboard.pdf');
+    // });
   } 
 
   public exportDashboardToPng($event: Event) {
     console.log("exportToPng");
-    if ($event) {
-      $event.stopPropagation();
-    }
-    console.log("exportToPng");
+  //  export dahsboard to png
+  // const dashboard = document.getElementById('gridster-background');
+  // const options = {
+  //   background: 'white',
+  //   scale: 3
+  // };
   }
 
 
