@@ -151,6 +151,9 @@ import { tap } from 'rxjs/operators';
 import { LayoutFixedSize, LayoutWidthType } from '@home/components/dashboard-page/layout/layout.models';
 import { TbPopoverComponent } from '@shared/components/popover.component';
 import { ResizeObserver } from '@juggle/resize-observer';
+import { PrintDahsboardSettings } from './print-dashboard-setting.models';
+import { MatMenu } from '@angular/material/menu';
+
 
 // @dynamic
 @Component({
@@ -176,6 +179,7 @@ export class DashboardPageComponent extends PageComponent implements IDashboardC
   currentState: string;
 
   private hideToolbarValue = false;
+
 
   @Input()
   set hideToolbar(hideToolbar: boolean) {
@@ -336,6 +340,25 @@ export class DashboardPageComponent extends PageComponent implements IDashboardC
 
   @ViewChild('dashboardWidgetSelect') dashboardWidgetSelectComponent: DashboardWidgetSelectComponent;
 
+  printDashbaordSettings: Array<PrintDahsboardSettings> = [
+    {
+      isEnable : true,
+      name: 'Export to PDF',
+      icon: 'insert_drive_file',
+      onAction: ($event: any) => {
+        this.exportDashboardToPdf($event);
+      }
+    },
+    {
+      isEnable : true,
+      name: 'Export to PNG',
+      icon: 'insert_photo',
+      onAction: ($event) => {
+        this.exportDashboardToPng($event);
+      }
+    }
+  ];
+
   constructor(protected store: Store<AppState>,
               @Inject(WINDOW) private window: Window,
               @Inject(DOCUMENT) private document: Document,
@@ -485,6 +508,8 @@ export class DashboardPageComponent extends PageComponent implements IDashboardC
       this.window.parent.postMessage(JSON.stringify(message), '*');
     }
   }
+
+
 
   private updateDashboardCss() {
     this.cleanupDashboardCss();
@@ -801,6 +826,34 @@ export class DashboardPageComponent extends PageComponent implements IDashboardC
     }
     this.importExport.exportDashboard(this.currentDashboardId);
   }
+
+  public exportDashboardToPdf($event: Event) {
+    const dashboard = document.getElementById('gridster-background');
+    const options = {
+      background: 'white',
+      scale: 3
+    };
+    // html2canvas(dashboard, options).then((canvas) => {
+    //   const imgData = canvas.toDataURL('image/png');
+    //   const doc = new jsPDF('p', 'mm',
+    //     [dashboard.getBoundingClientRect().width * 0.264583333, dashboard.getBoundingClientRect().height * 0.264583333]);
+    //   doc.addImage(imgData, 'PNG', 0, 0);
+    //   doc.save('dashboard.pdf');
+    // });
+  } 
+
+  public exportDashboardToPng($event: Event) {
+    console.log("exportToPng");
+  //  export dahsboard to png
+  // const dashboard = document.getElementById('gridster-background');
+  // const options = {
+  //   background: 'white',
+  //   scale: 3
+  // };
+  }
+
+
+  public exportTo
 
   public openEntityAliases($event: Event) {
     if ($event) {
