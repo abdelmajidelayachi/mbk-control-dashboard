@@ -100,6 +100,20 @@
                   (click)="exportDashboard($event)">
             <mat-icon>file_download</mat-icon>
           </button>
+          <!--TODO: add dropdown has button to save pdf or png or json --> 
+        
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Print the dashboard in Pdf or Image">
+          <mat-icon>print</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" >
+          <button mat-menu-item *ngFor="let printDashbaordSetting of printDashbaordSettings"
+          matTooltipPosition="above"
+          (click)="printDashbaordSetting.onAction($event)">
+            <mat-icon>{{printDashbaordSetting.icon}}</mat-icon>
+            <span>{{printDashbaordSetting.name}}</span>
+          </button>
+        </mat-menu>
+
           <tb-timewindow [fxShow]="isEdit || displayDashboardTimewindow()"
                          isToolbar="true"
                          [isEdit]="isEdit"
